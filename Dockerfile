@@ -2,11 +2,12 @@ FROM php:8.1-fpm
 
 LABEL maintainer="Bilal Khalid"
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update \
+   && apt-get install -y --no-install-recommends \
    build-essential apt-utils libfreetype6-dev libjpeg62-turbo-dev \
    libmemcached-dev libmcrypt-dev libpng-dev libxml2-dev libzip-dev \
    libz-dev libicu-dev locales jpegoptim optipng pngquant gifsicle \
-   zip unzip git curl \
+   zip unzip git curl mariadb-client \
    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN pecl install memcached && \
